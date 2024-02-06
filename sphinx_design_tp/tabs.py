@@ -128,6 +128,7 @@ class TabSetCodeDirective(SphinxDirective):
         "no-sync": directives.flag,
         "class-set": directives.class_option,
         "class-item": directives.class_option,
+        "names": directives.unchanged,  # New option for custom names
     }
 
     def run(self) -> List[nodes.Node]:
@@ -139,7 +140,13 @@ class TabSetCodeDirective(SphinxDirective):
         self.set_source_info(tab_set)
         self.state.nested_parse(self.content, self.content_offset, tab_set)
         new_children = []
-        for item in tab_set.children:
+
+        # Parse the custom names
+        custom_names = self.options.get("names", "")
+        if custom_names:
+            custom_names = [name.strip() for name in custom_names.split(",")]
+
+        for index, item in enumerate(tab_set.children):
             if not isinstance(item, nodes.literal_block):
                 LOGGER.warning(
                     f"All children of a 'tab-code-set' "
@@ -149,10 +156,18 @@ class TabSetCodeDirective(SphinxDirective):
                     subtype="tab_code",
                 )
                 continue
+
             language = item.get("language", "unknown")
+
+            # Use custom name if available, else use the language name
+            if custom_names and index < len(custom_names):
+                tab_name = custom_names[index]
+            else:
+                tab_name = language.upper()
+
             tab_label = nodes.rubric(
-                language.upper(),
-                nodes.Text(language.upper()),
+                tab_name,
+                nodes.Text(tab_name),
                 classes=["sd-tab-label"] + self.options.get("class-label", []),
             )
             if "no-sync" not in self.options:
