@@ -3,7 +3,7 @@ requires = ["flit_core >=3.4,<4"]
 build-backend = "flit_core.buildapi"
 
 [project]
-name = "sphinx_design"
+name = "sphinx_design_tp"
 dynamic = ["version"]
 description = "A sphinx extension for designing beautiful, view size responsive web components."
 authors = [{name = "Chris Sewell", email = "chrisj_sewell@hotmail.com"}]
