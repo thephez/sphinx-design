@@ -7,7 +7,7 @@ import pytest
 from sphinx import version_info
 from sphinx.testing.util import SphinxTestApp
 
-from sphinx_design._compat import findall
+from sphinx_design_tp._compat import findall
 
 pytest_plugins = "sphinx.testing.fixtures"
 

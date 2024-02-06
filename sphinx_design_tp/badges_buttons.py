@@ -6,7 +6,7 @@ from sphinx import addnodes
 from sphinx.application import Sphinx
 from sphinx.util.docutils import ReferenceRole, SphinxDirective, SphinxRole
 
-from sphinx_design.shared import SEMANTIC_COLORS, make_choice, text_align
+from sphinx_design_tp.shared import SEMANTIC_COLORS, make_choice, text_align
 
 ROLE_NAME_BADGE_PREFIX = "bdg"
 ROLE_NAME_LINK_PREFIX = "bdg-link"

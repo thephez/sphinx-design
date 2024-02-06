@@ -6,7 +6,7 @@ from sphinx.application import Sphinx
 from sphinx.transforms.post_transforms import SphinxPostTransform
 from sphinx.util.docutils import SphinxDirective
 
-from sphinx_design.shared import (
+from sphinx_design_tp.shared import (
     SEMANTIC_COLORS,
     create_component,
     is_component,
